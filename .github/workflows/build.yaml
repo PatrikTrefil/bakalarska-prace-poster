@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build poster PDF
+    runs-on: ubuntu-latest
+    container: { image: "aergus/latex" }
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the thesis
+        run: make
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Poster
+          path: "*.pdf"
