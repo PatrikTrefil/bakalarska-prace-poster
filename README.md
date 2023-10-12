@@ -1,11 +1,17 @@
+# Poster k bakalářské práci _Platforma pro monitorování mentálního zdraví_ (MFF UK)
 
-# Simple MFF poster starter
+Text bakalářské práce je k dispozici
+[v tomto repozitáři](https://github.com/PatrikTrefil/bakalarska-prace). Zdrojový
+kód projektu je k dispozici
+[v tomto repozitáři](https://github.com/PatrikTrefil/mental-health-monitoring-platform).
 
-A poster "starter" non-template.
+## Kompilace
 
-How-to:
+```sh
+$ make
+```
 
-- Build with `make`; a [pre-built version is available](build/poster.pdf).
-- Read extra commentary in `poster.tex`.
-- Make sure you __erase all text and box structure__ from the starter after
-  reading it; both is almost surely wrong for your use case.
+## Workflows
+
+Repozitář má workflow pro kompilaci a uložení výsledných PDF souborů. Soubory
+lze najít jako artefakt běhu workflow.
