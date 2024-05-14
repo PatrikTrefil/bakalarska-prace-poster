@@ -8,6 +8,11 @@ on:
 
   workflow_dispatch:
 
+env:
+  # Secrets are configured on github.com in repository settings
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 jobs:
   build:
     name: Build poster PDF
@@ -15,15 +20,16 @@ jobs:
     container: { image: "aergus/latex" }
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build the thesis
         run: make
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Poster
-          path: "*.pdf"
+          path: "poster.pdf"
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18
