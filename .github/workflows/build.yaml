@@ -35,7 +35,7 @@ jobs:
         run: >-
           mkdir upload &&
           cp poster.pdf upload &&
-          echo '{ "redirects": [ { "source": "/", "destination": "/poster.pdf", "permanent": true }
+          echo '{ "redirects": [ { "source": "/", "destination": "/poster.pdf", "permanent": true } ] }'
 
       - name: Pull Vercel Environment Information
         working-directory: upload
