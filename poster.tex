@@ -1,37 +1,22 @@
-
-% POSTER EXAMPLE
-%
-% This is an example of a relatively sane poster. The box structure (and the
-% narrative in general) is what I would expect, but it is completely
-% non-mandatory; you may include whatever you want. Preferably, erase the
-% existing box structure after you read it, and start from scratch.
-%
-% The main communication requirements for the poster that should be satisfied
-% are as such:
-%
-% - At the defense, it should help you talk for around 10 minutes about your
-%   thesis, and convince the committee that you did something interesting and
-%   sufficiently complicated. Prepare pictures that explain your main results.
-%
-% - It should quickly communicate the main idea of your thesis to a random
-%   educated by-walker. Ideally, a moderately-witted MFF graduate who has never
-%   heard about your thesis before should be able to get the main "rough idea"
-%   in less than 1 minute by just looking at the poster.
-
 % modify the fontscale parameter to make everything slighly bigger or smaller.
 \documentclass[portrait,a0paper,fontscale=0.25]{baposter}
 
+\usepackage[czech]{babel}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{svg}
+\usepackage{enumitem}
+
 
 % FONT CHOICES
 % Posters do not need to be PDF/A; you can choose any relatable font from the
 % TeX font catalogue without much risk. Sans-serif fonts are suggested for the
 % posters; see https://tug.org/FontCatalogue/sansseriffonts.html
-\usepackage[sfdefault]{Fira Sans}
+%\usepackage[sfdefault]{Fira Sans}
 %\usepackage[default]{droidsans}
 %\usepackage[math]{iwona}
-%\usepackage[defaultfam]{montserrat}
+\usepackage[defaultfam]{montserrat}
 %\usepackage{cmbright}
 %\usepackage{yfonts}\renewcommand{\familydefault}{\frakdefault}
 
@@ -41,6 +26,9 @@
 \usepackage[export]{adjustbox} %allows using valign with \includegraphics
 
 \renewcommand{\arraystretch}{1.5}
+
+\usepackage{enumitem}
+\setlist{itemsep=1pt}
 
 \usetikzlibrary{positioning}
 
@@ -65,10 +53,6 @@
 % - The normal "informative" text and figures should be DARK on LIGHT
 %   background, not the other way around.
 %
-% - If you want a dark background, soften (darken) the box backgrounds a bit so
-%   that they do not "shine" too much from the poster. Use \color{white} for
-%   the heading, and switch the UK/MFF logos to white (see contents of logos/).
-%
 % - Do not mix too many color hues together. Most hues have their widely
 %   accepted meaning (green: good result, red: problem, blue: information,
 %   yellow: highlighter, brown: serious problem, violet: something really
@@ -76,84 +60,73 @@
 
 \begin{document}
 
-\color{black!80} % default font color
-\begin{poster}{grid=false,
-	eyecatcher=true,
-	background=plain,
-	bgColorOne=black!3, % background color
-	columns=2,
-	headerborder=none,
-	textborder=none,
-	headershape=rectangle,
-	headershade=plain,
-	boxshade=plain,
-	boxColorOne=white,
-	headershade=plain,
-	headerColorOne=black!15, % box header background color
-	headerFontColor=black,
-	}%
-	{\includegraphics[height=7em]{logos/mff-black.pdf}}
-	{Thesis name goes here}
-	{\vspace{1ex} Yourname Goeshere}
-	{\includegraphics[height=7em]{logos/uk-red.pdf}}
+    \color{black!80} % default font color
+    \begin{poster}{grid=false,
+        eyecatcher=true,
+        background=plain,
+        bgColorOne=black!3, % background color
+        columns=2,
+        headerborder=none,
+        textborder=none,
+        headershape=rounded,
+        headershade=plain,
+        boxshade=plain,
+        boxColorOne=white,
+        headershade=plain,
+        headerColorOne=black!15, % box header background color
+        headerFontColor=black,
+        boxpadding=4mm
+    }%
+    {\includegraphics[height=7em]{logos/mff-black}}
+    {Platforma pro monitorování mentálního zdraví}
+    {\vspace{1ex} Patrik Trefil}
+    {\includegraphics[height=7em]{logos/uk-red}}
 
 
 %
 % LEFT COLUMN
 %
 
-\begin{posterbox}[column=0,name=background]{Background}
-Describe what is the problem that your thesis addresses.
+        \begin{posterbox}[column=0,name=intro]{úvod}
+            Tato práce vznikla z motivace zlepšit kvalitu poskytované zdravotní péče v oblasti duševního zdraví za pomoci digitálních technologií.
+            Při léčbě duševních potíží se často využívají domácí úkoly papírové formy, které jsou následně manuálně vyhodnocovány terapeuty.
+            Digitalizací procesu spolupráce lze zajistit efektivnější spolupráci mezi terapeuty a pacienty a automatizovaný sběr dat o pacientech.
+            Získaná data lze využít pro sledování vývoje stavu pacientů a také pro výzkum.
 
-Include a picture of the problem. Name the problem.
+            V době analýzy existujících řešení nebylo nalezeno žádné řešení pro online spolupráci terapeutů a pacientů.
 
-\begin{center}\begin{tikzpicture}[ultra thick, inner sep=1ex]
-\node[rectangle, rounded corners=1ex, draw=red!80!black, color=red!80!black, font=\huge\bfseries, rotate=21] {Problem!};
-\end{tikzpicture}\end{center}
-\end{posterbox}
+            Tato práce byla vytvořena ve spolupráci s Národním ústavem duševního zdraví (NUDZ), který poskytl svou expertízu a zkušenosti v oblasti duševního zdraví.
+        \end{posterbox}
 
-\begin{posterbox}[column=0, name=goals, below=background, headerColorOne=cyan!60, boxColorOne=cyan!20]{Thesis goals}
-\begin{itemize}
-\item How do you approach and address the problem?
-\item What tools do you use to address it?
-\item \dots
-\end{itemize}
+        \begin{posterbox}[column=0, name=goals, below=intro]{návrh řešení}
+            Na základě analýzy požadavků zadavatele byla navržena webová aplikace s těmito hlavními funkcemi:
 
-Highlighting important boxes helps a lot, but do not overdo the highlighting --- if all boxes are highlighted, not a single one will actually stand out.
-\end{posterbox}
+            \begin{itemize}
+                \item Drag and drop editor pro vytváření komplexních formulářů
+                \item Zadávání úkolů pacientům/účastníkům studie terapeuty/výzkumníky
+                \item Základní analýza sesbíraných dat v aplikaci a možnost exportu
+            \end{itemize}
 
-\begin{posterbox}[column=0, name=something1, below=goals]{Some extra boxes}
-This box may contain an overview of the used methods, mathematics, program structure, etc.
+            Aplikace využívá architekturu typu klient-server.
+            Na obrázku níže je zjednodušeně znázorněn návrh řešení.
 
-Include a picture, because pictures are better. Thesis defense takes less than 10 minutes, no one can read a wall of text in that short time. (For comparison, the usual realistic poster visit on a conference takes 15 seconds, unless the poster manages to catch the attention in that short time.)
+            \begin{center}
+                \includesvg[width=0.9\linewidth]{img/architecture.drawio}
+            \end{center}
 
-\tikzstyle{rec}=[rectangle, draw, rounded corners=1ex, font=\huge\bfseries]
-\begin{center}\begin{tikzpicture}[ultra thick, inner sep=1ex]
-\node[rec] (a) {Keep};
-\node[rec, circle, right=of a] (b) {it};
-\node[rec, right=of b] (c) {simple};
-\node[rec, densely dotted, below=6cm of c, font=\small] (notice) {\dots{}but precise!};
-\draw[->] (a) to (b);
-\draw[->] (b) to (c);
-\draw[dotted] (notice) to (c);
-\end{tikzpicture}\end{center}
-
-\end{posterbox}
-
-\begin{posterbox}[column=0, name=something2, below=something1, headerColorOne=yellow!80!orange!95!black, boxColorOne=yellow!33]{Golden rule of posters}
-For each $p \in P$ where $P$ is a set of posters:
-$$ \textsc{Success}(p) = \frac{\textsc{Clarity}(p)}{\textsc{TimeToViewerAttention}(p)} $$
-\end{posterbox}
+            Mezi hlavní kvalitativní požadavky ústavu patřila snadná rozšiřitelnost aplikace o další formy spolupráce a možnost provozu aplikace na vlastní infrastruktuře.
+            Tyto požadavky byly adresovány vhodným rozdělením aplikace na komponenty a využití Docker pro snadné nasazení.
+        \end{posterbox}
 
 %
 % FOOTER
 %
 
-\begin{posterbox}[column=0, span=2, name=footer, below=something2,
-	textborder=none, headerborder=none, boxheaderheight=0pt,
-	boxColorOne=black!3]{}
-If some institute/grant/department sponsored the work, put an acknowledgement here.
-\end{posterbox}
+%        \begin{posterbox}[column=0, span=2, name=footer, below=something2,
+%            textborder=none, headerborder=none, boxheaderheight=0pt,
+%            boxColorOne=black!3]{}
+%            If some institute/grant/department sponsored the work, put an acknowledgement here.
+%        \end{posterbox}
 
 %
 % RIGHT COLUMN
@@ -163,50 +136,50 @@ If some institute/grant/department sponsored the work, put an acknowledgement he
 % with measurements are perfect, tables are also good.
 %
 
-\begin{posterbox}[column=1, name=result1]{Result: SomePlots are Good}
-\begin{center}
-\includegraphics[width=0.7\linewidth]{img/ukazka-obr02.pdf}
-\end{center}
+        \begin{posterbox}[column=1, name=impl]{implementace}
+            Aplikace využívá existující open-source software Form.io pro správu formulářů a uživatelů.
+            Ostatní části aplikace byly vyvinuty v jazyce TypeScript s využitím frameworku NextJS\@.
+            Komunikace mezi serverem a klientem probíhá pomocí \textit{remote procedure call} knihovny.
+            Komunikace mezi serverem a databází probíhá pomocí \textit{object relational mapping} knihovny.
+            Na obrázku níže je zobrazena obrazovka pro správu úkolů z pohledu terapeuta.
 
-You may want to choose a single picture and make it stand out of the poster, so that it communicates the main result of your thesis as clearly as possible.
-\end{posterbox}
+            \begin{center}
+                \includegraphics[width=\linewidth]{img/sprava-ukolu}
+            \end{center}
+        \end{posterbox}
 
-\begin{posterbox}[column=1, name=result2, below=result1]{Result: TableData are OK too}
-\begin{center}
-\begin{tabular}{lrr}
- & \textbf{SomeProgram} & \textbf{ThisThesis} \\
-\hline
-Process A & 50\% & 58\% \\
-Time for A & 35 days & \textcolor{green!80!black}{35 seconds} \\
-Process B & \textcolor{red}{15\%} & 55\% \\
-Time for B & 1 day & 8 hours \\
-Price & 66.6 EUR & free
-\end{tabular}
-\end{center}
-\end{posterbox}
+        \begin{posterbox}[column=1, name=testing, below=impl]{testování}
+            Serverová část aplikace je testována pomocí automatizovaných unit testů.
+            Testujeme pouze veřejné rozhraní všech modulů.
+            Objekt fungující jako proxy databáze byl nahrazen mock objekty.
+            V tabulce níže je zobrazeno pokrytí serverové části automatizovanými unit testy.
+            \begin{center}
+                \begin{tabular}{c|c|c|c}
+                    \textbf{Výrazy} & \textbf{Větve} & \textbf{Funkce} & \textbf{Řádky} \\
+                    \hline
+                    90.85 \%        & 72.91 \%       & 100 \%          & 90.85 \%       \\
+                \end{tabular}
+            \end{center}
+        \end{posterbox}
 
-\begin{posterbox}[column=1, name=result3, below=result2, headerColorOne=green!50!yellow, boxColorOne=green!10]{Main result}
-\large\bfseries
-\vspace{1ex}
-\begin{center}
-Program ThesisProgram solves the problem better than OtherProgram if X, and faster if Y.
-\end{center}
-\vspace{.5ex}
-\end{posterbox}
+        \begin{posterbox}[column=1, name=conclusion, below=testing]{shrnutí}
+            Vyvinuli jsme plně funkční webovou aplikaci, která splňuje všechny požadavky zadavatele a je připravena do produkce.
+            Vyvinůtý software je open-source a dostupný na platformě GitHub.
+            Možné navazující práce:
+            \begin{itemize}
+                \item Přidání interaktivních vzdělávacích her nebo cvičení pro zvýšení motivace pacientů ke spolupráci
+%                \item Přidání možnosti zasílání zpráv mezi terapeuty a pacienty pro řešení akutních potíží, či nejasností v zadaných úkolech
+                \item Přidání schopnosti systému sledovat chování uživatele v průběhu vyplňování dotazníků
+            \end{itemize}
+        \end{posterbox}
 
-\begin{posterbox}[column=1, name=conclusion, below=result3, bottomaligned=something2]{Conclusions}
-\begin{itemize}
-\item explain the value of your result to others
-\item point out any applications
-\item if the program is online/opensource/on github, you may highlight it here
-\end{itemize}
-Possible future work:
-\begin{itemize}
-\item say what could be improved
-\item point out any interesting new opened problems that would be worth investigating
-\item include long-term goals
-\end{itemize}
-\end{posterbox}
+        \begin{posterbox}[column=1, name=information, below=conclusion]{informace}
+            Kontakt: patrik.trefil@gmail.com
 
-\end{poster}
+            \vspace{2mm}
+
+            Vedoucí bakalářské práce: Mgr.\ Petr Škoda, Ph.D., Katedra softwarového inženýrství
+        \end{posterbox}
+
+    \end{poster}
 \end{document}
