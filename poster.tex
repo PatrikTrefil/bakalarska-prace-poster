@@ -7,6 +7,9 @@
 \usepackage[T1]{fontenc}
 \usepackage{svg}
 \usepackage{enumitem}
+\usepackage{qrcode}
+\usepackage{vwcol}
+
 
 
 % FONT CHOICES
@@ -101,10 +104,10 @@
         \begin{posterbox}[column=0, name=goals, below=intro]{návrh řešení}
             Na základě analýzy požadavků zadavatele byla navržena webová aplikace s těmito hlavními funkcemi:
 
-            \begin{itemize}
+            \begin{itemize}[leftmargin=*]
                 \item Drag and drop editor pro vytváření komplexních formulářů
                 \item Zadávání úkolů pacientům/účastníkům studie terapeuty/výzkumníky
-                \item Základní analýza sesbíraných dat v aplikaci a možnost exportu
+                \item Základní analýza sesbíraných dat v aplikaci a~možnost exportu
             \end{itemize}
 
             Aplikace využívá architekturu typu klient-server.
@@ -141,7 +144,7 @@
             Ostatní části aplikace byly vyvinuty v jazyce TypeScript s využitím frameworku NextJS\@.
             Komunikace mezi serverem a klientem probíhá pomocí \textit{remote procedure call} knihovny.
             Komunikace mezi serverem a databází probíhá pomocí \textit{object relational mapping} knihovny.
-            Na obrázku níže je zobrazena obrazovka pro správu úkolů z pohledu terapeuta.
+            Na obrázku níže najdete obrazovku pro správu úkolů z pohledu terapeuta.
 
             \begin{center}
                 \includegraphics[width=\linewidth]{img/sprava-ukolu}
@@ -150,8 +153,8 @@
 
         \begin{posterbox}[column=1, name=testing, below=impl]{testování}
             Serverová část aplikace je testována pomocí automatizovaných unit testů.
-            Testujeme pouze veřejné rozhraní všech modulů.
-            Objekt fungující jako proxy databáze byl nahrazen mock objekty.
+            Testujeme pouze veřejné rozhraní jednotlivých modulů.
+            Objekt fungující jako proxy databáze je v testech nahrazen mock objekty.
             V tabulce níže je zobrazeno pokrytí serverové části automatizovanými unit testy.
             \begin{center}
                 \begin{tabular}{c|c|c|c}
@@ -164,21 +167,29 @@
 
         \begin{posterbox}[column=1, name=conclusion, below=testing]{závěr}
             Vyvinuli jsme plně funkční webovou aplikaci, která splňuje všechny požadavky zadavatele a je připravena do produkce.
-            Vyvinůtý software je open-source a dostupný na platformě GitHub.
-            Možné navazující práce:
-            \begin{itemize}
-                \item Přidání interaktivních vzdělávacích her nebo cvičení pro zvýšení motivace pacientů ke spolupráci
-%                \item Přidání možnosti zasílání zpráv mezi terapeuty a pacienty pro řešení akutních potíží, či nejasností v zadaných úkolech
-                \item Přidání schopnosti systému sledovat chování uživatele v průběhu vyplňování dotazníků
-            \end{itemize}
+            V aplikaci je možné snadno vytvářet komplexní formuláře, zadávat úkoly a provádět základní analýzu sesbíraných dat.
+            Výsledná aplikace byla otestována a předána zadavateli k nasazení.
+            Aplikace má navíc mnoho potenciálu pro další rozvoj.
+            Vyvinutý software je open-source a dostupný na platformě GitHub.
         \end{posterbox}
 
         \begin{posterbox}[column=1, name=information, below=conclusion]{informace}
-            Kontakt: patrik.trefil@gmail.com
+            \begin{minipage}[t]{\textwidth-3cm}
+            \raggedright
+            Kontakt:\newline
+            patrik.trefil@gmail.com
 
-            \vspace{2mm}
+            \vspace{3mm}
 
-            Vedoucí bakalářské práce: Mgr.\ Petr Škoda, Ph.D., Katedra softwarového inženýrství
+            Vedoucí bakalářské práce:\newline
+            Mgr.\ Petr Škoda, Ph.D.,
+            KSI
+            \end{minipage}%
+            \hfill%
+            \begin{minipage}[t]{2.3cm}
+                \raisebox{\dimexpr-\height+.7\baselineskip}{\includesvg[width=0.9\textwidth]{img/qr}}
+            \end{minipage}
+
         \end{posterbox}
 
     \end{poster}
